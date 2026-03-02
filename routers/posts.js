@@ -62,7 +62,19 @@ router.get('/', function (req, res) {
 
 //Show
 router.get('/:id', function (req, res) {
-  res.send('Dettagli del post ' + req.params.id);
+  const id = Number(req.params.id);
+  const post = posts.find((post) => post.id === id);
+
+  if (!post) {
+    return res.status(404).json({
+      error: 'Post non trovato',
+    });
+  }
+
+  res.status(200).json({
+    message: 'Dettaglio post singolo',
+    detailPost: post,
+  });
 });
 
 //Create
