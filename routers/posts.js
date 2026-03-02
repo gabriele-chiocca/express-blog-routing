@@ -53,18 +53,32 @@ const posts = [
   },
 ];
 
+//Index
 router.get('/', function (req, res) {
   posts;
 
   res.status(200).json(posts);
 });
 
+//Show
 router.get('/:id', function (req, res) {
   res.send('Dettagli del post ' + req.params.id);
 });
 
+//Create
 router.post('/', function (req, res) {
   res.send('Creazione nuovo post');
+});
+
+//Update
+router.put('/posts/:id', function (req, res) {
+  res.send('Modifica parziale del post' + req.params.id);
+});
+
+//Delete
+
+router.delete('/posts/:id', function (req, res) {
+  res.send('Elimina il post' + req.params.id);
 });
 
 module.exports = router;
