@@ -3,6 +3,8 @@ const app = express();
 const port = 3000;
 const appUrl = `http://localhost:${port}/`;
 
+const postsRouter = require('./routers/posts');
+
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
@@ -14,11 +16,7 @@ app.get('/', (req, res) => {
   res.status(200).json(responseData);
 });
 
-app.get('/bacheca', (req, res) => {
-  products;
-
-  res.status(200).json(products);
-});
+app.use('/posts', postsRouter);
 
 app.listen(port, () => {
   console.log(`Il server è inizializzato all'indirizzo ${appUrl}`);
