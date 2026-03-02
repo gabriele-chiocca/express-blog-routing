@@ -53,8 +53,10 @@ const posts = [
   },
 ];
 
-router.get('/', function (res, req) {
-  res.send('Lista dei post ' + posts);
+router.get('/', function (req, res) {
+  posts;
+
+  res.status(200).json(posts);
 });
 
 router.get('/:id', function (req, res) {
@@ -65,4 +67,4 @@ router.post('/', function (req, res) {
   res.send('Creazione nuovo post');
 });
 
-module.exports = posts;
+module.exports = router;
