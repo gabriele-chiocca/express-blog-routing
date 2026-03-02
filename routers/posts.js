@@ -71,14 +71,30 @@ router.post('/', function (req, res) {
 });
 
 //Update
-router.put('/posts/:id', function (req, res) {
+router.put('/:id', function (req, res) {
   res.send('Modifica parziale del post' + req.params.id);
 });
 
 //Delete
 
-router.delete('/posts/:id', function (req, res) {
-  res.send('Elimina il post' + req.params.id);
+router.delete('/:id', function (req, res) {
+  const id = Number(req.params.id);
+
+  const post = posts.find((post) => post.id === id);
+
+  if (!post) {
+    return res.status(404).json({
+      error: 'Post non trovato',
+    });
+  }
+
+  const Index = posts.indexOf(post);
+  posts.splice(Index, 1);
+
+  res.json({
+    message: 'Post eliminato',
+    deletedPost: post,
+  });
 });
 
 module.exports = router;
